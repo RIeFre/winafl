@@ -40,6 +40,7 @@ Windows even for black box binary fuzzing.
 Instead of instrumenting the code at compilation time, WinAFL supports the
 following instrumentation modes:
  - Dynamic instrumentation using DynamoRIO (http://dynamorio.org/)
+ - Dynamic instrumentation using TinyInst (https://github.com/googleprojectzero/TinyInst)
  - Hardware tracing using Intel PT
  - Static instrumentation via Syzygy
 
@@ -70,8 +71,9 @@ WinAFL has been successfully used to identify bugs in Windows software, such as 
 | Microsoft | [CVE-2018-8464](https://cpr-zero.checkpoint.com/vulns/cprid-2098/) | Yoav Alon ([@yoavalon](https://twitter.com/yoavalon)) and Netanel Ben-Simon ([@NetanelBenSimon](https://twitter.com/netanelbensimon)) of Check Point Research
 | Microsoft | [CVE-2019-0538](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0538), [CVE-2019-0576](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0576), [CVE-2019-0577](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0577), [CVE-2019-0579](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0579), [CVE-2019-0580](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0580), [CVE-2019-0879](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0879), [CVE-2019-0889](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0889), [CVE-2019-0891](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0891), [CVE-2019-0899](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0899), [CVE-2019-0902](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-0902), [CVE-2019-1243](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-1243), [CVE-2019-1250](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2019-1250), [CVE-2020-0687](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2020-0687), [CVE-2020-0744](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2020-0744), [CVE-2020-0879](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2020-0879), [CVE-2020-0964](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2020-0964), [CVE-2020-0995](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2020-0995), [CVE-2020-1141](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2020-1141), [CVE-2020-1145](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2020-1145), [CVE-2020-1160](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2020-1160), [CVE-2020-1179](https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2020-1179), [CVE-2021-1665](https://www.mcafee.com/blogs/other-blogs/mcafee-labs/analyzing-cve-2021-1665-remote-code-execution-vulnerability-in-windows-gdi/) | Hardik Shah ([@hardik05](https://twitter.com/hardik05)) of McAfee
 | Microsoft | [CVE-2021-42276](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-42276), [CVE-2021-28350](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-28350), [CVE-2021-28349](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-28349), [CVE-2021-28348](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2021-28348) | Simon Barsky ([expend20](https://twitter.com/expend20))
-| Microsoft | [CVE-2022-21903](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21903), [CVE-2022-21904](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_setdibitstodevice-record/), [CVE-2022-21915](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_stretchdibits-record/), [CVE-2022-26934](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_createdibpatternbrushpt-record/), [CVE-2022-29112](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_bitblt-record/) | [Gábor Selján](https://twitter.com/GaborSeljan)
+| Microsoft | [CVE-2022-21903](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21903), [CVE-2022-21904](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_setdibitstodevice-record/), [CVE-2022-21915](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_stretchdibits-record/), [CVE-2022-26934](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_createdibpatternbrushpt-record/), [CVE-2022-29112](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_bitblt-record/), [CVE-2022-35837](https://www.seljan.hu/posts/arbitrary-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_startdoc-record/), [CVE-2022-34728](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_setpixelv-record/), [CVE-2022-38006](https://www.seljan.hu/posts/out-of-bounds-read-information-disclosure-vulnerability-in-microsoft-windows-gdi-emr_stretchdibits-record-again/) | [Gábor Selján](https://twitter.com/GaborSeljan)
 | Microsoft | [CVE-2021-38665](https://thalium.github.io/blog/posts/leaking-aslr-through-rdp-printer-cache-registry/), [CVE-2021-38666](https://thalium.github.io/blog/posts/deserialization-bug-through-rdp-smart-card-extension/) | Valentino Ricotta with Thalium
+| Microsoft | [CVE-2022-26929](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-26929), [CVE-2022-30130](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-30130) | Eran Zimmerman Gonen ([@3r4nz](https://twitter.com/3r4nz))
 | FreeRDP | [CVE-2021-37594](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-37594), [CVE-2021-37595](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-37595) | Valentino Ricotta with Thalium
 | Kollective | CVE-2018-11672 | Maksim Shudrak ([@MShudrak](https://twitter.com/MShudrak)) of Salesforce
 | Mozilla | [CVE-2018-5177](https://bugzilla.mozilla.org/show_bug.cgi?id=1451908) | Guy Inbar ([@guyio_](https://twitter.com/guyio_))
@@ -83,6 +85,7 @@ WinAFL has been successfully used to identify bugs in Windows software, such as 
 | ACDSee | [CVE-2019-13247](https://github.com/apriorit/pentesting/blob/master/bugs/acdsee/0x00000000000024ed.md), [CVE-2019-13248](https://github.com/apriorit/pentesting/blob/master/bugs/acdsee/0x0000000000002450.md), [CVE-2019-13249](https://github.com/apriorit/pentesting/blob/master/bugs/acdsee/0x00000000000b9e7a.md), [CVE-2019-13250](https://github.com/apriorit/pentesting/blob/master/bugs/acdsee/0x00000000000b9c2f.md), [CVE-2019-13251](https://github.com/apriorit/pentesting/blob/master/bugs/acdsee/0x00000000000c47ff.md), [CVE-2019-13252](https://github.com/apriorit/pentesting/blob/master/bugs/acdsee/0x00000000001172b0.md), [CVE-2019-15293](https://www.apriorit.com/dev-blog/640-qa-fuzzing-for-closed-source-windows-software) | [@expend20](https://twitter.com/expend20) and Anton Kukoba of Apriorit
 | Foxit | [CVE-2019-13330](https://www.zerodayinitiative.com/advisories/ZDI-19-853/), [CVE-2019-13331](https://www.zerodayinitiative.com/advisories/ZDI-19-854/), [CVE-2020-8844](https://www.zerodayinitiative.com/advisories/ZDI-20-200/) | Natnael Samson ([@NattiSamson](https://twitter.com/NattiSamson))
 | Rockwell Automation | [CVE-2020-12034, CVE-2020-12038](https://www.us-cert.gov/ics/advisories/icsa-20-140-01) | [Sharon Brizinov](https://sharonbrizinov.com/) and Amir Preminger of Claroty
+| F-Secure & WithSecure | CVE-2021-33599, CVE-2021-33602, CVE-2021-40836, CVE-2021-40837, CVE-2022-28875, CVE-2022-28876, CVE-2022-28879, CVE-2022-28881, CVE-2022-28882, CVE-2022-28883, CVE-2022-28884, CVE-2022-28886, CVE-2022-28887 | [@faty420](https://twitter.com/faty420)
 
 (Let me know if you know of any others, and I'll include them in the list)
 
@@ -109,7 +112,7 @@ source directory).
 ```
 mkdir build32
 cd build32
-cmake -G"Visual Studio 16 2019" -A Win32 .. -DDynamoRIO_DIR=..\path\to\DynamoRIO\cmake -DINTELPT=1
+cmake -G"Visual Studio 16 2019" -A Win32 .. -DDynamoRIO_DIR=C:\path\to\DynamoRIO\cmake -DINTELPT=1
 cmake --build . --config Release
 ```
 
@@ -118,7 +121,7 @@ cmake --build . --config Release
 ```
 mkdir build64
 cd build64
-cmake -G"Visual Studio 16 2019" -A x64 .. -DDynamoRIO_DIR=..\path\to\DynamoRIO\cmake -DINTELPT=1
+cmake -G"Visual Studio 16 2019" -A x64 .. -DDynamoRIO_DIR=C:\path\to\DynamoRIO\cmake -DINTELPT=1
 cmake --build . --config Release
 ```
 
@@ -128,6 +131,9 @@ The following cmake configuration options are supported:
 
  - `-DDynamoRIO_DIR=..\path\to\DynamoRIO\cmake` - Needed to build the
    winafl.dll DynamoRIO client
+
+ - `-DTINYINST=1` - Enable TinyInst mode. For more information see
+   https://github.com/googleprojectzero/winafl/blob/master/readme_tinyinst.md
 
  - `-DINTELPT=1` - Enable Intel PT mode. For more information see
    https://github.com/googleprojectzero/winafl/blob/master/readme_pt.md
@@ -183,7 +189,7 @@ The following afl-fuzz options are supported:
 Please refer to the original AFL documentation for more info on these flags.
 
 To see the supported instrumentation flags, please refer to the documentation
-on the specific instrumentation mode you are interested in.
+on the specific instrumentation mode you are interested in (see "Instrumentation modes" below).
 
 ## How does my target run under WinAFL
 
@@ -217,6 +223,7 @@ The following documents provide information on using different instrumentation
 modes with WinAFL:
 
  - [Dynamic instrumentation using DynamoRIO](https://github.com/googleprojectzero/winafl/blob/master/readme_dr.md)
+ - [Dynamic instrumentation using TinyInst](https://github.com/googleprojectzero/winafl/blob/master/readme_tinyinst.md)
  - [Hardware tracing using Intel PT](https://github.com/googleprojectzero/winafl/blob/master/readme_pt.md)
  - [Static instrumentation via Syzygy](https://github.com/googleprojectzero/winafl/blob/master/readme_syzygy.md)
 
